@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script>
+    
+    $(function(){//유효성 검사
+        //form에서 submit 이벤트가 발생하면 실행.
+        $("#signal").submit(function(){
+            if($(".infobox").val()==null || $(".infobox").val()==""){
+                $(".error").show();
+                return false;//이벤트 전파 막기
+            
+        }
+    });
+});
+    
+    </script>
+</head>
+<body>
+    
+<form action="" id="signal" method="get">
+
+    <div>
+        <span class="label1">User ID</span>
+        <input type="text" class="infobox" name="userid">
+        <span class="error" hidden="" style="color:red">반드시 입력하세요</span>
+    </div>
+    <input type="submit" class="submit" value="입력">
+</form>
+<hr>
+
+<fieldset style="width: 300px;">
+
+<legend>체크여부 확인</legend>
+<input type="checkbox" name="all" onclick="allchk(this.chedcked);">전체 선택<br>
+
+<input type="checkbox" name="chk" value="20000"><b>java</b><br>
+<input type="checkbox" name="chk" value="30000"><b>jquery</b><br>
+<input type="checkbox" name="chk" value="40000"><b>spring</b><br>
+<input type="button" id="confirm" value="확인"><br>
+<span>선택한 책 가격</span>
+<div id="result"></div>
+</fieldset>
+
+</body>
+</html>
