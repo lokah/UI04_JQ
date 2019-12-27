@@ -17,7 +17,50 @@
             
         }
     });
+    $("#confirm").click(function(){
+        $("#result").empty();
+        if($("input[name=chk]:checked").length==0){
+            alert("하나 이상 체크해라");
+        }else{
+            var res =0;
+            $("input[name=chk]:checked").each(function(i){
+                //var chk = $("input[name=chk]:checked").eq(i);
+                var chk = $(this);
+                var book = chk.next().text();//chk 옆에(next()) 있는 태그 요소의 텍스트를 가져온다.
+                var price = chk.val();
+                $("#result").append(book+":가격"+price+"<br>");
+                res +=parseInt(price);
+            });
+            $("#result").append("총 가격 : "+ res);
+        }
+    });
+    $("input[name=chk]").click(function(){
+
+        if($("#input[name=chk]").length==$("input[name=chk]:checked").length){
+            $("input[name=all]").prop("checked", true);
+
+        }else{
+            $("input[name=all]").prop("checked",false);
+        }
+
+        });
+
+    
+
 });
+/*
+attr("attrName") / prp("attrName")
+.attr() : html의 속성("attribute")을 가져오고
+.prop() : javascript 객체의 속성("property")을 취급
+
+
+*/
+function allchk(bool){
+
+    $("input[name=chk]").each(function(){
+        $(this).prop("checked", bool);//prop을 attr로 바꿔 써도 된다. 가능하면 prop을 쓴다.
+    });
+}
     
     </script>
 </head>
@@ -37,7 +80,7 @@
 <fieldset style="width: 300px;">
 
 <legend>체크여부 확인</legend>
-<input type="checkbox" name="all" onclick="allchk(this.chedcked);">전체 선택<br>
+<input type="checkbox" name="all" onclick="allchk(this.checked);">전체 선택<br>
 
 <input type="checkbox" name="chk" value="20000"><b>java</b><br>
 <input type="checkbox" name="chk" value="30000"><b>jquery</b><br>
