@@ -44,14 +44,50 @@
 
         $("a:eq(0)").click(function(e){
             alert("a클릭!");
+            //e.stopPropagation();
+           // e.preventDefault();
+          // return false;
         });
         $("p").click(function(e){
 
             alert("p클릭");
+            e.stopPropagation();
         });
         $("div").click(function(){
 
             alert("div클릭")
+        });
+
+        $("a:eq(1)").bind("mouseover mouseout", function(e){
+            if(e.type=="mouseover"){
+                $(this).css("background-color", "red");
+            }
+            if(e.type=="mouseout"){
+                $(this).css("background-color", "");
+            }
+
+        });
+
+        $("a:eq(1)").bind({
+            "mouseover": function(){
+
+                $(this).css("background-color", "blue");
+            },
+            "mouseout":function(){
+                $(this).css("background-color","");
+            }
+        });
+
+        $("span").click(function(){
+            alert("span을 클릭하면 이벤트가 해제됩니다!!");
+            $("a:eq(1)").unbind();
+        });
+        $("button").click(function(){
+            $("body").append("<p>새로 추가된 p태그 <p>");
+        });
+
+        $("body").on("click", ">p", function(){
+            alert("새로 추가된 요소도 이벤트 적용")
         });
     });
 
